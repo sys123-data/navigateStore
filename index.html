@@ -14,14 +14,37 @@
 
     //2. Redirect to GooglePlay or AppStore
  
+    function getMobileOperatingSystem() {
+
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
+
+        return 'iOS';
+
+    } else if (userAgent.match(/HMSCore/i)) {
+
+        return 'HMS';
+
+    } else if (userAgent.match(/Android/i)) {
+
+        return 'Android';
+        
+    } else {
+
+        return 'unknown';
+
+    }
+
+    }
     setTimeout(function () {
 
         var os = getMobileOperatingSystem();
-
+        
         if (os === "iOS") {
 
-            window.location = "itms-apps://apps.apple.com/ro/app/myvodafone-ro/id468772675";
-
+            // window.location = "itms-apps://apps.apple.com/ro/app/myvodafone-ro/id468772675";
+            window.location.href = encodeURIComponent("itms-apps://apps.apple.com/ro/app/myvodafone-ro/id468772675");
             //document.getElementById('ahref').click();
 
         } else if (os === "HMS"){
@@ -56,30 +79,8 @@
 
     window.addEventListener('pagehide', preventPopup);
  
- 
-    function getMobileOperatingSystem() {
-
-        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
- 
-        if (userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
-
-            return 'iOS';
- 
-        } else if (userAgent.match(/HMSCore/i)) {
- 
-            return 'HMS';
-
-        } else if (userAgent.match(/Android/i)) {
- 
-            return 'Android';
-            
-        } else {
-
-            return 'unknown';
-
-        }
-
-    }
+    
+    
 
 </script>
  
