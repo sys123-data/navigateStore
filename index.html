@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<body>
+
+<script type="text/javascript">
+
+    //Sprint29 - Campaign Redirect Scriptlet
+
+    //This scriptlet will be used in Campaign Mechanism to:
+
+    //1. Open Native MyVodafone Romania App
+
+    //2. Redirect to GooglePlay or AppStore
+ 
+    setTimeout(function () {
+
+        var os = getMobileOperatingSystem();
+
+        if (os === "iOS") {
+
+            window.location = "itms-apps://apps.apple.com/ro/app/myvodafone-ro/id468772675";
+
+            document.getElementById('ahref').click();
+
+        } else if (os === "HMS"){
+            
+            window.location = "market://com.huawei.appmarket.applink?appId=C102056527";
+
+            document.getElementById('ahref').click();
+            
+        } else if (os === "Android"){
+
+            window.location = "market://details?id=ro.vodafone.mcare.android";
+
+            document.getElementById('ahref').click();
+
+        }
+        else
+        {
+            window.location.replace("https://www.vodafone.ro/aplicatia-myvodafone/");
+
+            document.getElementById('ahref').click();
+        }
+           
+
+
+    }, 400);
+ 
+    var deeplink = location.search.split('page_id=')[1] ? location.search.split('page_id=')[1] : '';
+
+    //alert(deeplink);
+
+    window.location.href = "myvodafone://webview?page_id=" + deeplink;
+
+    window.addEventListener('pagehide', preventPopup);
+ 
+ 
+    function getMobileOperatingSystem() {
+
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+ 
+        if (userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
+
+            return 'iOS';
+ 
+        } else if (userAgent.match(/HMSCore/i)) {
+ 
+            return 'HMS';
+
+        } else if (userAgent.match(/Android/i)) {
+ 
+            return 'Android';
+            
+        } else {
+
+            return 'unknown';
+
+        }
+
+    }
+
+</script>
+ 
+<script type="text/javascript" src="/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=2&cb=1885201150" async></script></body>
+
+</html>
