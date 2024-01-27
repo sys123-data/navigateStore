@@ -43,7 +43,9 @@
         
         if (os === "iOS") {
 
-            window.location = "itms-apps://apps.apple.com/ro/app/myvodafone-ro/id468772675";
+            window.location.href = "itms-apps://apps.apple.com/ro/app/myvodafone-ro/id468772675";
+            window.location.reload();
+
             //window.location = encodeURIComponent("itms-apps://apps.apple.com/ro/app/myvodafone-ro/id468772675");
             //document.getElementById('ahref').click();
 
@@ -69,7 +71,7 @@
            
 
 
-    }, 200);
+    }, 250);
  
     function isAppInstalled(deeplink) {
     // You can customize this function based on how you want to check if the app is installed
