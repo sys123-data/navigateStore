@@ -45,42 +45,57 @@
 
             window.location = "itms-apps://apps.apple.com/ro/app/myvodafone-ro/id468772675";
             //window.location = encodeURIComponent("itms-apps://apps.apple.com/ro/app/myvodafone-ro/id468772675");
-            document.getElementById('ahref').click();
+            //document.getElementById('ahref').click();
 
         } else if (os === "HMS"){
             
             window.location = "market://com.huawei.appmarket.applink?appId=C102056527";
 
-            document.getElementById('ahref').click();
+            //document.getElementById('ahref').click();
             
         } else if (os === "Android"){
 
             window.location = "market://details?id=ro.vodafone.mcare.android";
 
-            document.getElementById('ahref').click();
+            //document.getElementById('ahref').click();
 
         }
         else
         {
             window.location ="https://www.vodafone.ro/aplicatia-myvodafone/";
 
-            document.getElementById('ahref').click();
+            //document.getElementById('ahref').click();
         }
            
 
 
     }, 5);
  
-    var deeplink = location.search.split('page_id=')[1] ? location.search.split('page_id=')[1] : '';
+    function isAppInstalled(deeplink) {
+    // You can customize this function based on how you want to check if the app is installed
+        // For example, you can try to open the app and check for success or failure
+        // This is just a simple example, and you may need to adjust it based on your app's specifics
+        try {
+            window.location.href = "myvodafone://webview?page_id=" + deeplink;
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
 
+    var deeplink = location.search.split('page_id=')[1] ? location.search.split('page_id=')[1] : '';
+    var os = getMobileOperatingSystem();
     //alert(deeplink);
 
-       
-    try {
+    if (os!='iOS'){
         window.location.href = "myvodafone://webview?page_id=" + deeplink;
-    } catch (error) {
-        //
     }
+    else{
+        if(isAppInstalled(deeplink)){
+            window.location.href = "myvodafone://webview?page_id=" + deeplink;
+        }
+    }
+    
 
     window.addEventListener('pagehide', preventPopup);
  
